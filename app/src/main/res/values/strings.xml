@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Top 10 Anime Movie/Series</string>
+    <string name="movie">Movie</string>
+    <string name="tvShow">Tv Series</string>
+    <string name="title">Title</string>
+    <string name="studio">Studio</string>
+    <string name="description">Description</string>
+    <string name="title_activity_detail">Detail</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="genre">Genre</string>
+    <string name="logo">Logo</string>
+</resources>
