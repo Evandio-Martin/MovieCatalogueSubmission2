@@ -1,5 +1,9 @@
 package com.dicoding.picodiploma.moviecatalogue.data
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 class RemoteDataSource {
 
     companion object {
@@ -13,7 +17,9 @@ class RemoteDataSource {
     }
 
     fun loadPopularMovies(callback: LoadPopularMoviesCallback){
-        callback.onPopularMoviesReceived(ApiConfig.instance.getPopularMovies())
+        CoroutineScope(Dispatchers.IO).launch {
+            callback.onPopularMoviesReceived(ApiConfig.instance.getPopularMovies())
+        }
     }
 
     interface LoadPopularMoviesCallback {
@@ -21,7 +27,9 @@ class RemoteDataSource {
     }
 
     fun loadPopularTvShows(callback: LoadPopularTvShowsCallback){
-        callback.onPopularTvShowsReceived(ApiConfig.instance.getPopularTvShow())
+        CoroutineScope(Dispatchers.IO).launch {
+            callback.onPopularTvShowsReceived(ApiConfig.instance.getPopularTvShow())
+        }
     }
 
     interface LoadPopularTvShowsCallback {

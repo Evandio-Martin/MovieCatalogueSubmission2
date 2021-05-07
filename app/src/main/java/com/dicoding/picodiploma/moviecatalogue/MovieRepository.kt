@@ -57,5 +57,47 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
         return tvShowResults
     }
 
+    fun getMovieWithModules(movieId: String): LiveData<MovieEntity> {
+        val movieResult = MutableLiveData<MovieEntity>()
+
+        remoteDataSource.loadPopularMovies(object : RemoteDataSource.LoadPopularMoviesCallback {
+            override fun onPopularMoviesReceived(movieResponses: List<MovieParcel>) {
+                lateinit var movie: MovieEntity
+                for (response in movieResponses) {
+                    if (response.title == movieId) {
+                        movie = MovieEntity(response.title,
+                                response.poster,
+                                response.studio,
+                                response.genre,
+                                response.description)
+                    }
+                }
+                movieResult.postValue(movie)
+            }
+        })
+        return movieResult
+    }
+
+    fun getTvShowWithModules(tvShowId: String): LiveData<TvShowEntity> {
+        val tvShowResult = MutableLiveData<TvShowEntity>()
+
+        remoteDataSource.loadPopularTvShows(object : RemoteDataSource.LoadPopularTvShowsCallback {
+            override fun onPopularTvShowsReceived(tvShowResponses: List<TvShowParcel>) {
+                lateinit var tvShow: TvShowEntity
+                for (response in tvShowResponses) {
+                    if (response.title == tvShowId) {
+                        tvShow = TvShowEntity(response.title,
+                                response.poster,
+                                response.studio,
+                                response.genre,
+                                response.description)
+                    }
+                }
+                tvShowResult.postValue(tvShow)
+            }
+        })
+        return tvShowResult
+    }
+
 
 }
