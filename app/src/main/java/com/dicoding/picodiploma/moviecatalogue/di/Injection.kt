@@ -5,7 +5,7 @@ import com.dicoding.picodiploma.moviecatalogue.MovieRepository
 import com.dicoding.picodiploma.moviecatalogue.data.RemoteDataSource
 
 object Injection {
-    fun provideCatalogRepository(): MovieRepository {
+    fun provideCatalogRepository(context: Context): MovieRepository {
         val remoteDataSource = RemoteDataSource.getInstance()
         return MovieRepository.getInstance(remoteDataSource)
     }

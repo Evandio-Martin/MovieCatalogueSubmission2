@@ -3,13 +3,11 @@ package com.dicoding.picodiploma.moviecatalogue.ui.tv
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.moviecatalogue.R
 import com.dicoding.picodiploma.moviecatalogue.TvShowEntity
-import com.dicoding.picodiploma.moviecatalogue.data.TvShow
 import com.dicoding.picodiploma.moviecatalogue.databinding.ItemsTvShowBinding
 import com.dicoding.picodiploma.tvShowcatalogue.ui.detail.tvshow.DetailTvShowActivity
 import java.util.*

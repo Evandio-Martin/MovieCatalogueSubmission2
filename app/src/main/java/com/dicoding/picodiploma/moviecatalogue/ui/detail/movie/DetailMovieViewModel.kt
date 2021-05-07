@@ -12,5 +12,5 @@ class DetailMovieViewModel(private val repository: MovieRepository) : ViewModel(
         this.movieId = movieId
     }
 
-    fun getMovie(): LiveData<List<MovieEntity>> = repository.getPopularMovies(movieId)
+    fun getMovie(): LiveData<List<MovieEntity>> = repository.getPopularMovies()
 }

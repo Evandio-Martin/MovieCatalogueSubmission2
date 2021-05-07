@@ -9,7 +9,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.moviecatalogue.R
 import com.dicoding.picodiploma.moviecatalogue.TvShowEntity
-import com.dicoding.picodiploma.moviecatalogue.data.TvShow
 import com.dicoding.picodiploma.moviecatalogue.databinding.ActivityTvShowDetailBinding
 import com.dicoding.picodiploma.moviecatalogue.databinding.ContentTvShowDetailBinding
 import com.dicoding.picodiploma.moviecatalogue.ui.detail.tvshow.DetailTvShowViewModel
@@ -46,10 +45,6 @@ class DetailTvShowActivity : AppCompatActivity() {
                 activityDetailBinding.progressBar.visibility = View.VISIBLE
 
                 viewModel.setSelectedTvShow(tvShowId)
-                viewModel.getTvShow().observe(this, { modules ->
-                    activityDetailBinding.progressBar.visibility = View.GONE
-
-                })
                 viewModel.getTvShow().observe(this, { course -> populateTvShow(course) })
             }
         }

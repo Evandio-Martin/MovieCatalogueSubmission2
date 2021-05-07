@@ -9,7 +9,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.moviecatalogue.MovieEntity
 import com.dicoding.picodiploma.moviecatalogue.R
-import com.dicoding.picodiploma.moviecatalogue.data.Movie
 import com.dicoding.picodiploma.moviecatalogue.databinding.ActivityDetailBinding
 import com.dicoding.picodiploma.moviecatalogue.databinding.ContentDetailBinding
 import com.dicoding.picodiploma.moviecatalogue.viewmodel.ViewModelFactory
@@ -45,10 +44,6 @@ class DetailMovieActivity : AppCompatActivity() {
                 activityDetailBinding.progressBar.visibility = View.VISIBLE
 
                 viewModel.setSelectedMovie(movieId)
-                viewModel.getMovie().observe(this, { modules ->
-                    activityDetailBinding.progressBar.visibility = View.GONE
-
-                })
                 viewModel.getMovie().observe(this, { course -> populateMovie(course) })
             }
         }

@@ -3,13 +3,11 @@ package com.dicoding.picodiploma.moviecatalogue.ui.movie
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.moviecatalogue.MovieEntity
 import com.dicoding.picodiploma.moviecatalogue.R
-import com.dicoding.picodiploma.moviecatalogue.data.Movie
 import com.dicoding.picodiploma.moviecatalogue.databinding.ItemMovieBinding
 import com.dicoding.picodiploma.moviecatalogue.ui.detail.movie.DetailMovieActivity
 import java.util.*
