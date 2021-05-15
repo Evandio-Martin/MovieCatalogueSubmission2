@@ -20,7 +20,6 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         fragmentMovieBinding = FragmentMovieBinding.inflate(layoutInflater, container, false)
         return fragmentMovieBinding.root
     }
@@ -29,7 +28,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
 
-            val factory = ViewModelFactory.getInstance(requireActivity())
+            val factory = ViewModelFactory.getInstance()
             val viewModel = ViewModelProvider(
                 this,
                 factory
@@ -52,5 +51,4 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
             }
         }
     }
-
 }

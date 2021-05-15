@@ -1,6 +1,5 @@
 package com.dicoding.picodiploma.moviecatalogue.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.picodiploma.moviecatalogue.MovieRepository
@@ -10,15 +9,16 @@ import com.dicoding.picodiploma.moviecatalogue.ui.detail.tvshow.DetailTvShowView
 import com.dicoding.picodiploma.moviecatalogue.ui.movie.MovieViewModel
 import com.dicoding.picodiploma.moviecatalogue.ui.tv.TvShowViewModel
 
-class ViewModelFactory private constructor(private val repository: MovieRepository) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory private constructor(private val repository: MovieRepository) :
+    ViewModelProvider.NewInstanceFactory() {
 
     companion object {
         @Volatile
         private var instance: ViewModelFactory? = null
 
-        fun getInstance(context: Context): ViewModelFactory =
+        fun getInstance(): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideCatalogRepository(context)).apply {
+                instance ?: ViewModelFactory(Injection.provideCatalogRepository()).apply {
                     instance = this
                 }
             }

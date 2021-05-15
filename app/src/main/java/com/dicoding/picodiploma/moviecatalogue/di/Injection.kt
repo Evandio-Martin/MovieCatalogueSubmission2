@@ -1,11 +1,10 @@
 package com.dicoding.picodiploma.moviecatalogue.di
 
-import android.content.Context
 import com.dicoding.picodiploma.moviecatalogue.MovieRepository
-import com.dicoding.picodiploma.moviecatalogue.data.RemoteDataSource
+import com.dicoding.picodiploma.moviecatalogue.data.remote.RemoteDataSource
 
 object Injection {
-    fun provideCatalogRepository(context: Context): MovieRepository {
+    fun provideCatalogRepository(): MovieRepository {
         val remoteDataSource = RemoteDataSource.getInstance()
         return MovieRepository.getInstance(remoteDataSource)
     }

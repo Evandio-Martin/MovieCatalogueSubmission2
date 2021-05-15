@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Top 10 Anime Movie/Series</string>
+    <string name="app_name">Popular Movies and Tv Series</string>
     <string name="movie">Movie</string>
     <string name="tvShow">Tv Series</string>
     <string name="title">Title</string>
@@ -9,4 +9,7 @@
     <string name="synopsis">Synopsis</string>
     <string name="genre">Genre</string>
     <string name="logo">Logo</string>
+    <string name="vote">Vote Average: </string>
+    <string name="release">Release Date: </string>
+
 </resources>

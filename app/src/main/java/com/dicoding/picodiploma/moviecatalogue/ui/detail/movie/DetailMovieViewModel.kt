@@ -2,8 +2,8 @@ package com.dicoding.picodiploma.moviecatalogue.ui.detail.movie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.dicoding.picodiploma.moviecatalogue.MovieEntity
 import com.dicoding.picodiploma.moviecatalogue.MovieRepository
+import com.dicoding.picodiploma.moviecatalogue.data.Model
 
 class DetailMovieViewModel(private val repository: MovieRepository) : ViewModel() {
     private lateinit var movieId: String
@@ -12,5 +12,5 @@ class DetailMovieViewModel(private val repository: MovieRepository) : ViewModel(
         this.movieId = movieId
     }
 
-    fun getMovie(): LiveData<MovieEntity> = repository.getMovieWithModules(movieId)
+    fun getMovie(movieId: String): LiveData<Model> = repository.getMovieWithModules(movieId)
 }

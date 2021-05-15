@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.tvShowcatalogue.ui.detail.tvshow
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.moviecatalogue.R
-import com.dicoding.picodiploma.moviecatalogue.TvShowEntity
+import com.dicoding.picodiploma.moviecatalogue.data.Model
 import com.dicoding.picodiploma.moviecatalogue.databinding.ActivityTvShowDetailBinding
 import com.dicoding.picodiploma.moviecatalogue.databinding.ContentTvShowDetailBinding
 import com.dicoding.picodiploma.moviecatalogue.ui.detail.tvshow.DetailTvShowViewModel
@@ -32,7 +33,7 @@ class DetailTvShowActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val factory = ViewModelFactory.getInstance(this)
+        val factory = ViewModelFactory.getInstance()
         val viewModel = ViewModelProvider(
             this,
             factory
@@ -45,19 +46,26 @@ class DetailTvShowActivity : AppCompatActivity() {
                 activityDetailBinding.progressBar.visibility = View.VISIBLE
 
                 viewModel.setSelectedTvShow(tvShowId)
-                viewModel.getTvShow().observe(this, { course -> populateTvShow(course) })
+                viewModel.getTvShow(tvShowId).observe(this, { course ->
+                    populateTvShow(course)
+                    activityDetailBinding.progressBar.visibility = View.GONE
+                })
             }
         }
     }
 
-    private fun populateTvShow(tvShowEntity: TvShowEntity) {
+    @SuppressLint("SetTextI18n")
+    private fun populateTvShow(tvShowEntity: Model) {
+        val BASE_IMG = "https://image.tmdb.org/t/p/w500"
         detailContentBinding.textTitle.text = tvShowEntity.title
         detailContentBinding.textDescription.text = tvShowEntity.description
-        detailContentBinding.textStudio.text = tvShowEntity.studio.toString()
-        detailContentBinding.textGenre.text = tvShowEntity.genre
+        detailContentBinding.textStudio.text =
+            "${resources.getString(R.string.vote)} ${tvShowEntity.studio.toString()}"
+        detailContentBinding.textGenre.text =
+            "${resources.getString(R.string.release)} ${tvShowEntity.genre}"
 
         Glide.with(this)
-            .load(tvShowEntity.poster)
+            .load(BASE_IMG + tvShowEntity.poster)
             .transform(RoundedCorners(20))
             .apply(
                 RequestOptions.placeholderOf(R.drawable.ic_loading)

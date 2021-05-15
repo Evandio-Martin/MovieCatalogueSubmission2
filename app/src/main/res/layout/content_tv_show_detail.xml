@@ -37,13 +37,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:gravity="start"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/text_title"
         app:layout_constraintTop_toBottomOf="@+id/text_title"
         app:layout_constraintVertical_bias="0.0"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:textStyle="bold"
         tools:text="@string/studio" />
 
     <TextView
@@ -76,6 +76,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +84,6 @@
         app:layout_constraintStart_toStartOf="@+id/poster"
         app:layout_constraintTop_toBottomOf="@+id/text_desc"
         app:layout_constraintVertical_bias="0.0"
-        android:fontFamily="sans-serif-condensed-medium"
         tools:text="@string/description" />
 
 

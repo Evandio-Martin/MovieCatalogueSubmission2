@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.moviecatalogue.ui.detail.movie
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.dicoding.picodiploma.moviecatalogue.MovieEntity
 import com.dicoding.picodiploma.moviecatalogue.R
+import com.dicoding.picodiploma.moviecatalogue.data.Model
 import com.dicoding.picodiploma.moviecatalogue.databinding.ActivityDetailBinding
 import com.dicoding.picodiploma.moviecatalogue.databinding.ContentDetailBinding
 import com.dicoding.picodiploma.moviecatalogue.viewmodel.ViewModelFactory
@@ -31,7 +32,7 @@ class DetailMovieActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val factory = ViewModelFactory.getInstance(this)
+        val factory = ViewModelFactory.getInstance()
         val viewModel = ViewModelProvider(
             this,
             factory
@@ -44,19 +45,26 @@ class DetailMovieActivity : AppCompatActivity() {
                 activityDetailBinding.progressBar.visibility = View.VISIBLE
 
                 viewModel.setSelectedMovie(movieId)
-                viewModel.getMovie().observe(this, { course -> populateMovie(course) })
+                viewModel.getMovie(movieId).observe(this, { course ->
+                    populateMovie(course)
+                    activityDetailBinding.progressBar.visibility = View.GONE
+                })
             }
         }
     }
 
-    private fun populateMovie(movieEntity: MovieEntity) {
+    @SuppressLint("SetTextI18n")
+    private fun populateMovie(movieEntity: Model) {
+        val BASE_IMG = "https://image.tmdb.org/t/p/w500"
         detailContentBinding.textTitle.text = movieEntity.title
         detailContentBinding.textDescription.text = movieEntity.description
-        detailContentBinding.textStudio.text = movieEntity.studio.toString()
-        detailContentBinding.textGenre.text = movieEntity.genre
+        detailContentBinding.textStudio.text =
+            "${resources.getString(R.string.vote)} ${movieEntity.studio.toString()}"
+        detailContentBinding.textGenre.text =
+            "${resources.getString(R.string.release)} ${movieEntity.genre}"
 
         Glide.with(this)
-            .load(movieEntity.poster)
+            .load(BASE_IMG + movieEntity.poster)
             .transform(RoundedCorners(20))
             .apply(
                 RequestOptions.placeholderOf(R.drawable.ic_loading)
